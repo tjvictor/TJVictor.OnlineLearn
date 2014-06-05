@@ -23,5 +23,10 @@ namespace TJVictor.OnlineLearn.Biz
                 select a.*,c.T1, c.T2, c.T3, c.T4, c.T5 from dbo.tblTeacher as a
                 join c on a.ID = c.ID;", null, null);
         }
+
+        public List<Teacher> GetAllTeacher()
+        {
+            return sqlHelper.GetClassItemList<Teacher>(@"select * from dbo.tblTeacher", null, null);
+        }
     }
 }

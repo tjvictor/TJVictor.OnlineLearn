@@ -40,6 +40,24 @@ namespace TJVictor.OnlineLearn.Website {
         protected global::Telerik.Web.UI.RadAjaxLoadingPanel RadAjaxLoadingPanel1;
         
         /// <summary>
+        /// MeBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadButton MeBtn;
+        
+        /// <summary>
+        /// TeacherCB control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadComboBox TeacherCB;
+        
+        /// <summary>
         /// LogScheduler control.
         /// </summary>
         /// <remarks>

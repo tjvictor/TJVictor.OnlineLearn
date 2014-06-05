@@ -188,7 +188,7 @@
         <ul id="nav">
             <li><a href="Default.aspx">首页</a> </li>
             <li><a href="PersonInfoForm.aspx">个人中心</a>
-                <ul style="z-index: 2;">
+                <ul style="z-index: 1002;">
                     <li><a href="PersonInfoForm.aspx">个人资料</a></li>
                     <li><a href="ChangePasswordForm.aspx">修改密码</a></li>
                     <li><a href="CourseLogForm.aspx">课程记录</a></li>

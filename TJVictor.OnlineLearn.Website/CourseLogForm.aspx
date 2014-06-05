@@ -6,7 +6,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div style="width: 900px; margin-top: 20px;" >
-        <telerik:RadGrid ID="GridView" runat="server" PageSize="10" AllowPaging="true" AllowFilteringByColumn="true"
+        <telerik:RadGrid ID="GridView" runat="server" PageSize="20" AllowPaging="true" AllowFilteringByColumn="true"
             OnInit="GridView_Init" EnableViewState="true" OnNeedDataSource="GridView_NeedDataSource"
             AllowSorting="true" GroupingEnabled="false"  AutoGenerateColumns="false"
             EnableLinqExpressions="false">
@@ -20,6 +20,7 @@
             </HeaderContextMenu>
             <ClientSettings EnableRowHoverStyle="true" AllowColumnHide="false">
                 <Selecting AllowRowSelect="true" />
+                
                 <Resizing AllowResizeToFit="true" AllowColumnResize="false" AllowRowResize="false"
                     EnableRealTimeResize="true" ClipCellContentOnResize="true" ResizeGridOnColumnResize="true" />
             </ClientSettings>

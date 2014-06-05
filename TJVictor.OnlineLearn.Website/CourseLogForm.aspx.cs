@@ -12,12 +12,18 @@ namespace TJVictor.OnlineLearn.Website
 {
     public partial class CourseLogForm : BasePage
     {
-        protected void Page_Load(object sender, EventArgs e)
+        protected override void PageLoad()
         {
+            if (!IsPostBack)
+            {
+                InitGridView();
+            }
         }
 
-        void WebGridView_GridViewInitialEvent(object sender, RadToolBarEventArgs e)
+        private void InitGridView()
         {
+            GridView.MasterTableView.Columns.Clear();
+
             GridBoundColumn C_NameColumn = new GridBoundColumn();
             GridView.MasterTableView.Columns.Add(C_NameColumn);
             C_NameColumn.DataField = "C_Name";
@@ -67,13 +73,13 @@ namespace TJVictor.OnlineLearn.Website
             UpdateTimeColumn.UniqueName = "UpdateTime";
             UpdateTimeColumn.SortExpression = "UpdateTime";
 
-            GridBoundColumn S_IDColumn = new GridBoundColumn();
-            GridView.MasterTableView.Columns.Add(S_IDColumn);
-            S_IDColumn.DataField = "S_ID";
-            S_IDColumn.HeaderText = "操作用户";
-            S_IDColumn.DataType = typeof(string);
-            S_IDColumn.UniqueName = "S_ID";
-            S_IDColumn.SortExpression = "S_ID";
+            //GridBoundColumn S_IDColumn = new GridBoundColumn();
+            //GridView.MasterTableView.Columns.Add(S_IDColumn);
+            //S_IDColumn.DataField = "S_ID";
+            //S_IDColumn.HeaderText = "操作用户";
+            //S_IDColumn.DataType = typeof(string);
+            //S_IDColumn.UniqueName = "S_ID";
+            //S_IDColumn.SortExpression = "S_ID";
 
             GridBoundColumn StatusColumn = new GridBoundColumn();
             GridView.MasterTableView.Columns.Add(StatusColumn);
@@ -104,7 +110,6 @@ namespace TJVictor.OnlineLearn.Website
         {
             UserEntity ue = Session[Utils.UserSession] as UserEntity;
             GridView.MasterTableView.DataSource = new ScheduleBiz().GetUserScheduleLog(ue.ID);
-
         }
 
         protected void GridView_Init(object sender, System.EventArgs e)

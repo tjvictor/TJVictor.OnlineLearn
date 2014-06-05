@@ -12,21 +12,45 @@ namespace TJVictor.OnlineLearn.Website
 {
     public partial class CourseOrderForm : BasePage
     {
-        protected override void OnInit(EventArgs e)
-        {
-            base.OnInit(e);
+        public string U_ID { get { UserEntity ue = Session[Utils.UserSession] as UserEntity; return ue.ID; } }
 
-            BindScheduler();
+        protected override void PageLoad()
+        {
+            if (!IsPostBack)
+            {
+                InitTeacher();
+                BindScheduler();
+            }
+
         }
 
-        protected void Page_Load(object sender, EventArgs e)
+        private void InitTeacher()
         {
+            TeacherBiz tb = new TeacherBiz();
+            Teacher teaTemp = new Teacher();
+            teaTemp.ID = Guid.Empty;
+            teaTemp.FirstName = "N/A";
+            teaTemp.LastName = "";
+            List<Teacher> teacherList = tb.GetAllTeacher();
+            teacherList.Insert(0, teaTemp);
+            TeacherCB.Items.Clear();
+
+            teacherList.ForEach(p => TeacherCB.Items.Add(new Telerik.Web.UI.RadComboBoxItem(p.T_Name, p.ID.ToString())));
         }
 
         private void BindScheduler()
         {
             ScheduleBiz sb = new ScheduleBiz();
-            List<Schedule> scheduleList = sb.GetAllSchedule();
+
+            string u_ID="";
+            string t_ID = "";
+
+            if(MeBtn.Checked)
+                u_ID = U_ID;
+            if (TeacherCB.SelectedIndex > 0)
+                t_ID = TeacherCB.SelectedItem.Value;
+
+            List<Schedule> scheduleList = sb.GetAllScheduleByU_IDAndT_ID(u_ID, t_ID);
             LogScheduler.DataSource = scheduleList.Where<Schedule>(p => p.Status == 1 || p.Status == 2 || p.Status == 4 || p.Status == 5);
         }
 
@@ -53,6 +77,16 @@ namespace TJVictor.OnlineLearn.Website
             {
                 BindScheduler();
             }
+        }
+
+        protected void TeacherCB_SelectedIndexChanged(object sender, Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs e)
+        {
+            BindScheduler();
+        }
+
+        protected void MeBtn_CheckedChanged(object sender, EventArgs e)
+        {
+            BindScheduler();
         }
 
     }

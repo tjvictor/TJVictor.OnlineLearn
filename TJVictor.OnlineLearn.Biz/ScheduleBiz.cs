@@ -17,7 +17,7 @@ namespace TJVictor.OnlineLearn.Biz
                 (
 	                select distinct S_ID from dbo.tblUserScheduleLog where U_ID = @p0
                 )
-                select a.*, b.Name, c.FirstName, c.LastName from dbo.tblUserScheduleLog as a
+                select a.*, b.Name as C_Name, c.FirstName as T_FirstName, c.LastName as T_LastName from dbo.tblUserScheduleLog as a
                 join dbo.tblCourse as b on a.C_ID = b.ID
                 join dbo.tblTeacher as c on a.T_ID = c.ID
                 join d on a.S_ID = d.S_ID
@@ -32,6 +32,30 @@ namespace TJVictor.OnlineLearn.Biz
                 from tblSchedule as a
                 join dbo.tblCourse as b on a.C_ID = b.ID
                 join dbo.tblTeacher as c on a.T_ID = c.ID;", null, null);
+        }
+
+        public List<Schedule> GetAllScheduleByU_IDAndT_ID(string u_ID, string t_ID)
+        {
+            List<Schedule> s_List = new List<Schedule>();
+            if (!string.IsNullOrEmpty(t_ID))
+                s_List.AddRange(sqlHelper.GetClassItemList<Schedule>(@"
+                select a.*, b.Name as C_Name, c.FirstName as T_FirstName,c.LastName as T_LastName 
+                from tblSchedule as a
+                join dbo.tblCourse as b on a.C_ID = b.ID
+                join dbo.tblTeacher as c on a.T_ID = c.ID where a.T_ID = @p0;", new string[] { "@p0" }, new object[] { t_ID }));
+
+            if (!string.IsNullOrEmpty(u_ID))
+            {
+                s_List.AddRange(sqlHelper.GetClassItemList<Schedule>(@"
+                select a.*, b.Name as C_Name, c.FirstName as T_FirstName,c.LastName as T_LastName 
+                from tblSchedule as a
+                join dbo.tblCourse as b on a.C_ID = b.ID
+                join dbo.tblTeacher as c on a.T_ID = c.ID 
+                join dbo.tblUser_Schedule as d on a.ID = d.S_ID
+                where d.U_ID = @p0;", new string[] { "@p0" }, new object[] { u_ID }));
+            }
+
+            return s_List;
         }
 
         public Schedule GetScheduleByS_ID(string s_ID)

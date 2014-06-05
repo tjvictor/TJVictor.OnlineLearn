@@ -178,6 +178,10 @@
     <Content Include="Img\Banners\OneToOne.png" />
     <Content Include="Img\Banners\TeacherResource.png" />
     <Content Include="Img\process.png" />
+    <Content Include="Img\Schedule\Square_Blue.PNG" />
+    <Content Include="Img\Schedule\Square_Gray.PNG" />
+    <Content Include="Img\Schedule\Square_Green.PNG" />
+    <Content Include="Img\Schedule\Square_Orange.PNG" />
     <Content Include="Img\splitter.png" />
     <Content Include="Img\StudentShow\s1.png" />
     <Content Include="Img\StudentShow\s2.jpg" />
@@ -240,7 +244,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
+      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

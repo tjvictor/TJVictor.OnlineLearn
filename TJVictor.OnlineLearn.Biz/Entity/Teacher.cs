@@ -14,5 +14,13 @@ namespace TJVictor.OnlineLearn.Biz.Entity
         public string Email { get; set; }
         public byte[] Avatar { get; set; }
         public string Des { get; set; }
+
+        public string T_Name
+        {
+            get
+            {
+                return string.Format("{0} {1}", LastName, FirstName);
+            }
+        }
     }
 }
